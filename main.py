@@ -95,11 +95,10 @@ def home(request: Request):
 def login_page(request: Request):
 
     return templates.TemplateResponse(
-        "login.html",
-        {
-            "request": request
-        }
-    )
+    request=request,
+    name="login.html",
+    context={}
+)
 
 
 # --------------------------------------------------
@@ -165,14 +164,14 @@ def admin_dashboard(
     mark_count = db.query(Mark).count()
 
     return templates.TemplateResponse(
-        "admin.html",
-        {
-            "request": request,
-            "student_count": student_count,
-            "subject_count": subject_count,
-            "mark_count": mark_count
-        }
-    )
+    request=request,
+    name="admin.html",
+    context={
+        "student_count": student_count,
+        "subject_count": subject_count,
+        "mark_count": mark_count
+    }
+)
 
 
 # --------------------------------------------------
