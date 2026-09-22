@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Marks Management</title>
+
+    <link rel="stylesheet"
+          href="/static/style.css">
+
+</head>
+
+<body>
+
+<nav>
+
+    <h2>Student Result System</h2>
+
+    <div>
+
+        <a href="/admin">Dashboard</a>
+        <a href="/students">Students</a>
+        <a href="/subjects">Subjects</a>
+        <a href="/marks">Marks</a>
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <h1>Enter Student Marks</h1>
+
+    <form
+        action="/marks/add"
+        method="post"
+        class="marks-form"
+    >
+
+        <label>Student</label>
+
+        <select name="student_id" required>
+
+            <option value="">
+                Select Student
+            </option>
+
+            {% for student in students %}
+
+            <option value="{{ student.id }}">
+
+                {{ student.roll_no }} -
+                {{ student.name }}
+
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+
+        <label>Subject</label>
+
+        <select name="subject_id" required>
+
+            <option value="">
+                Select Subject
+            </option>
+
+            {% for subject in subjects %}
+
+            <option value="{{ subject.id }}">
+
+                {{ subject.subject_code }} -
+                {{ subject.subject_name }}
+
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+
+        <label>Internal Marks / 30</label>
+
+        <input
+            type="number"
+            name="internal_marks"
+            min="0"
+            max="30"
+            required
+        >
+
+
+        <label>External Marks / 70</label>
+
+        <input
+            type="number"
+            name="external_marks"
+            min="0"
+            max="70"
+            required
+        >
+
+
+        <button type="submit">
+            Save Marks
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>

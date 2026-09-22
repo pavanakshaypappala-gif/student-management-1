@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Student Result</title>
+
+    <link rel="stylesheet"
+          href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="result-container">
+
+    <div class="university">
+
+        <h1>ADITYA UNIVERSITY</h1>
+
+        <h2>STUDENT RESULT</h2>
+
+    </div>
+
+
+    <div class="student-info">
+
+        <p>
+            <strong>Name:</strong>
+            {{ student.name }}
+        </p>
+
+        <p>
+            <strong>Roll Number:</strong>
+            {{ student.roll_no }}
+        </p>
+
+        <p>
+            <strong>Department:</strong>
+            {{ student.department }}
+        </p>
+
+        <p>
+            <strong>Year:</strong>
+            {{ student.year }}
+        </p>
+
+        <p>
+            <strong>Semester:</strong>
+            {{ student.semester }}
+        </p>
+
+    </div>
+
+
+    <table>
+
+        <tr>
+
+            <th>Code</th>
+            <th>Subject</th>
+            <th>Internal</th>
+            <th>External</th>
+            <th>Total</th>
+            <th>Grade</th>
+            <th>Result</th>
+
+        </tr>
+
+
+        {% for mark in marks %}
+
+        <tr>
+
+            <td>{{ mark.subject_code }}</td>
+
+            <td>{{ mark.subject_name }}</td>
+
+            <td>{{ mark.internal }}</td>
+
+            <td>{{ mark.external }}</td>
+
+            <td>{{ mark.total }}</td>
+
+            <td>{{ mark.grade }}</td>
+
+            <td>{{ mark.result }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+
+    <div class="result-summary">
+
+        <p>
+            <strong>Total Marks:</strong>
+            {{ total_marks }}
+        </p>
+
+        <p>
+            <strong>Percentage:</strong>
+            {{ percentage }}%
+        </p>
+
+        <p>
+            <strong>CGPA:</strong>
+            {{ cgpa }}
+        </p>
+
+        <p>
+            <strong>Overall Result:</strong>
+
+            <span class="{{ overall_result|lower }}">
+                {{ overall_result }}
+            </span>
+
+        </p>
+
+    </div>
+
+
+    <button
+        onclick="window.print()"
+        class="print-button"
+    >
+        Print Result
+    </button>
+
+</div>
+
+</body>
+
+</html>

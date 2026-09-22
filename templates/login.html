@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Login - Student Result System</title>
+
+    <link rel="stylesheet"
+          href="/static/style.css">
+
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <h1>Student Result Management System</h1>
+
+    <h2>Login</h2>
+
+    <form action="/login" method="post">
+
+        <label>Username</label>
+
+        <input
+            type="text"
+            name="username"
+            placeholder="Enter username"
+            required
+        >
+
+        <label>Password</label>
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Enter password"
+            required
+        >
+
+        <button type="submit">
+            Login
+        </button>
+
+    </form>
+
+    <p class="info">
+        Default Admin: admin / admin123
+    </p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Students</title>
+
+    <link rel="stylesheet"
+          href="/static/style.css">
+
+</head>
+
+<body>
+
+<nav>
+
+    <h2>Student Result System</h2>
+
+    <div>
+
+        <a href="/admin">Dashboard</a>
+        <a href="/students">Students</a>
+        <a href="/subjects">Subjects</a>
+        <a href="/marks">Marks</a>
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <h1>Add Student</h1>
+
+    <form
+        action="/students/add"
+        method="post"
+        class="form-grid"
+    >
+
+        <input
+            name="roll_no"
+            placeholder="Roll Number"
+            required
+        >
+
+        <input
+            name="name"
+            placeholder="Student Name"
+            required
+        >
+
+        <input
+            name="email"
+            placeholder="Email"
+        >
+
+        <input
+            name="department"
+            placeholder="Department"
+        >
+
+        <input
+            name="year"
+            placeholder="Year"
+        >
+
+        <input
+            name="semester"
+            placeholder="Semester"
+        >
+
+        <button type="submit">
+            Add Student
+        </button>
+
+    </form>
+
+
+    <h1>Student List</h1>
+
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>ID</th>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Department</th>
+                <th>Year</th>
+                <th>Semester</th>
+                <th>Actions</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+        {% for student in students %}
+
+            <tr>
+
+                <td>{{ student.id }}</td>
+
+                <td>{{ student.roll_no }}</td>
+
+                <td>{{ student.name }}</td>
+
+                <td>{{ student.email }}</td>
+
+                <td>{{ student.department }}</td>
+
+                <td>{{ student.year }}</td>
+
+                <td>{{ student.semester }}</td>
+
+                <td>
+
+                    <a
+                        href="/result/{{ student.id }}"
+                        class="btn"
+                    >
+                        Result
+                    </a>
+
+                    <a
+                        href="/students/delete/{{ student.id }}"
+                        class="delete"
+                        onclick="return confirm('Delete this student?')"
+                    >
+                        Delete
+                    </a>
+
+                </td>
+
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+
+    </table>
+
+</div>
+
+</body>
+
+</html>

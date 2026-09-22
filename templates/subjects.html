@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Subjects</title>
+
+    <link rel="stylesheet"
+          href="/static/style.css">
+
+</head>
+
+<body>
+
+<nav>
+
+    <h2>Student Result System</h2>
+
+    <div>
+
+        <a href="/admin">Dashboard</a>
+        <a href="/students">Students</a>
+        <a href="/subjects">Subjects</a>
+        <a href="/marks">Marks</a>
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <h1>Add Subject</h1>
+
+    <form
+        action="/subjects/add"
+        method="post"
+        class="form-grid"
+    >
+
+        <input
+            name="subject_code"
+            placeholder="Subject Code"
+            required
+        >
+
+        <input
+            name="subject_name"
+            placeholder="Subject Name"
+            required
+        >
+
+        <input
+            type="number"
+            name="credits"
+            placeholder="Credits"
+            required
+        >
+
+        <input
+            name="semester"
+            placeholder="Semester"
+            required
+        >
+
+        <button type="submit">
+            Add Subject
+        </button>
+
+    </form>
+
+
+    <h1>Subject List</h1>
+
+    <table>
+
+        <tr>
+
+            <th>ID</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Credits</th>
+            <th>Semester</th>
+
+        </tr>
+
+        {% for subject in subjects %}
+
+        <tr>
+
+            <td>{{ subject.id }}</td>
+
+            <td>{{ subject.subject_code }}</td>
+
+            <td>{{ subject.subject_name }}</td>
+
+            <td>{{ subject.credits }}</td>
+
+            <td>{{ subject.semester }}</td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="/static/style.css">
+
+</head>
+
+<body>
+
+<nav>
+
+    <h2>Student Result System</h2>
+
+    <div>
+
+        <a href="/admin">Dashboard</a>
+
+        <a href="/students">Students</a>
+
+        <a href="/subjects">Subjects</a>
+
+        <a href="/marks">Marks</a>
+
+        <a href="/logout">Logout</a>
+
+    </div>
+
+</nav>
+
+
+<div class="container">
+
+    <h1>Admin Dashboard</h1>
+
+    <div class="cards">
+
+        <div class="card">
+
+            <h3>Students</h3>
+
+            <p>{{ student_count }}</p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Subjects</h3>
+
+            <p>{{ subject_count }}</p>
+
+        </div>
+
+        <div class="card">
+
+            <h3>Marks Records</h3>
+
+            <p>{{ mark_count }}</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="quick-links">
+
+        <a href="/students">
+            Manage Students
+        </a>
+
+        <a href="/subjects">
+            Manage Subjects
+        </a>
+
+        <a href="/marks">
+            Enter Marks
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
