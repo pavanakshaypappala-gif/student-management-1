@@ -95,10 +95,11 @@ def home(request: Request):
 def login_page(request: Request):
 
     return templates.TemplateResponse(
-    request=request,
-    name="login.html",
-    context={}
-)
+        "login.html",
+        {
+            "request": request
+        }
+    )
 
 
 # --------------------------------------------------
@@ -164,14 +165,14 @@ def admin_dashboard(
     mark_count = db.query(Mark).count()
 
     return templates.TemplateResponse(
-    request=request,
-    name="admin.html",
-    context={
-        "student_count": student_count,
-        "subject_count": subject_count,
-        "mark_count": mark_count
-    }
-)
+        "admin.html",
+        {
+            "request": request,
+            "student_count": student_count,
+            "subject_count": subject_count,
+            "mark_count": mark_count
+        }
+    )
 
 
 # --------------------------------------------------
@@ -183,16 +184,15 @@ def students_page(
     request: Request,
     db: Session = Depends(get_db)
 ):
-
     if "user" not in request.session:
         return RedirectResponse("/login")
 
     students = db.query(Student).all()
 
     return templates.TemplateResponse(
-        "students.html",
-        {
-            "request": request,
+        request=request,
+        name="students.html",
+        context={
             "students": students
         }
     )
@@ -299,28 +299,22 @@ def subjects_page(
 # ADD SUBJECT
 # --------------------------------------------------
 
-@app.post("/subjects/add")
-def add_subject(
-    subject_code: str = Form(...),
-    subject_name: str = Form(...),
-    credits: int = Form(...),
-    semester: str = Form(...),
+@app.get("/subjects", response_class=HTMLResponse)
+def subjects_page(
+    request: Request,
     db: Session = Depends(get_db)
 ):
+    if "user" not in request.session:
+        return RedirectResponse("/login")
 
-    subject = Subject(
-        subject_code=subject_code,
-        subject_name=subject_name,
-        credits=credits,
-        semester=semester
-    )
+    subjects = db.query(Subject).all()
 
-    db.add(subject)
-    db.commit()
-
-    return RedirectResponse(
-        "/subjects",
-        status_code=303
+    return templates.TemplateResponse(
+        request=request,
+        name="subjects.html",
+        context={
+            "subjects": subjects
+        }
     )
 
 
@@ -333,7 +327,6 @@ def marks_page(
     request: Request,
     db: Session = Depends(get_db)
 ):
-
     if "user" not in request.session:
         return RedirectResponse("/login")
 
@@ -341,14 +334,13 @@ def marks_page(
     subjects = db.query(Subject).all()
 
     return templates.TemplateResponse(
-        "marks.html",
-        {
-            "request": request,
+        request=request,
+        name="marks.html",
+        context={
             "students": students,
             "subjects": subjects
         }
     )
-
 
 # --------------------------------------------------
 # ADD MARKS
